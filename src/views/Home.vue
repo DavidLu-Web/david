@@ -1,9 +1,14 @@
 <template>
   <div class="home">
     <el-container>
-      <el-aside width="260px">Aside</el-aside>
+      <el-aside :width="asideFlag ? '160px' : '260px'">Aside</el-aside>
       <el-container>
         <el-header>
+          <i
+            :class="asideFlag ? 'aa' : ''"
+            class="handle iconfont icon-tuihui"
+            @click="pushAndPull"
+          ></i>
           <span>个人简介</span>
         </el-header>
         <el-main>Main</el-main>
@@ -22,6 +27,16 @@ export default {
   // components: {
   //   HelloWorld,
   // },
+  data() {
+    return {
+      asideFlag: true,
+    };
+  },
+  methods: {
+    pushAndPull() {
+      this.asideFlag = !this.asideFlag;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -31,7 +46,23 @@ export default {
   .el-container {
     height: 100%;
     .el-header {
+      position: relative;
       background-color: #fff;
+      .handle {
+        width: 30px;
+        height: 40px;
+        line-height: 40px;
+        position: absolute;
+        left: 2px;
+        top: 9px;
+        background-color: #b3c0d1;
+      }
+      .aa {
+        -moz-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        transform: scaleX(-1);
+      }
     }
   }
 }
