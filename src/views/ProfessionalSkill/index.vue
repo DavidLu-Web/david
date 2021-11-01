@@ -1,15 +1,11 @@
 <template>
-<div class="professional-skill">
-  ProfessionalSkill
-</div>
+  <div class="professional-skill">ProfessionalSkill</div>
 </template>
 
 <script>
 export default {
-name: "ProfessionalSkill"
-}
+  name: "ProfessionalSkill",
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
