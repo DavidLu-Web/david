@@ -109,33 +109,75 @@ export default {
       console.log(dom);
       let myChart = echarts.init(dom);
       let options = {
-        title: {
-          text: "Referer of a Website",
-          subtext: "Fake Data",
-          left: "right",
-        },
         tooltip: {
           trigger: "item",
         },
         legend: {
-          orient: "vertical",
-          left: "left",
+          orient: "horizontal",
+          top: "top",
+          // align:'auto'
         },
         series: [
           {
             name: "专业技能",
             type: "pie",
-            radius: "40%",
+            radius: "45%",
+            labelLine: {
+              length: 20
+            },
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              formatter: '{a|{b}}{abg|}\n{hr|}\n {per|{d}%}  ',
+              backgroundColor: '#F6F8FC',
+              borderColor: '#8C8D8E',
+              borderWidth: 1,
+              padding: [2, 2],
+              borderRadius: 4,
+              align: 'left',
+              rich: {
+                a: {
+                  color: '#6E7079',
+                  lineHeight: 15,
+                  fontSize: 12,
+
+                  align: 'center'
+                },
+                hr: {
+                  borderColor: '#8C8D8E',
+                  width: '100%',
+                  borderWidth: 1,
+                  height: 0
+                },
+                b: {
+                  color: '#4C5058',
+                  fontSize: 8,
+                  fontWeight: 'bold',
+                  lineHeight: 20
+                },
+                per: {
+                  color: '#4C5058',
+                  align:'center',
+                  // backgroundColor: '#4C5058',
+                  padding: [3, 4],
+                  borderRadius: 4
+                }
+              }
+            },
             data: [
-              { value: 1048, name: "Vue" },
-              { value: 580, name: "H5/CSS3/ES6" },
-              { value: 580, name: "less/scss/stylus" },
-              { value: 484, name: "jQuery" },
-              { value: 300, name: "ElementUI/Vant" },
-              { value: 735, name: "git/yarn/npm" },
-              { value: 735, name: "Axios/Moment/Blob/Pdf" },
-              { value: 735, name: " RuoYi/vue-admin-element" },
+              { value: 30, name: "Vue" },
+              { value: 10, name: "H5/CSS3/ES6" },
+              { value: 5, name: "less/scss/stylus" },
+              { value: 5, name: "jQuery" },
+              { value: 15, name: "ElementUI/Vant" },
+              { value: 10, name: "git/yarn/npm" },
+              { value: 15, name: "Axios/Moment/Blob/Pdf" },
+              { value: 10, name: " RuoYi/vue-admin-element" },
             ],
+
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
@@ -155,6 +197,7 @@ export default {
 <style lang="scss" scoped>
 .basic-info {
   height: 100%;
+  max-height: calc( 100% - 80px );
   padding: 0 20px;
   display: flex;
 
@@ -162,6 +205,7 @@ export default {
     width: 60%;
     height: 100%;
     margin-right: 20px;
+    padding: 0 10px;
     border: 1px solid #ccc;
 
     .b-i-l-user {
@@ -177,9 +221,16 @@ export default {
           width: 130px;
           margin-right: 10px;
         }
+
         .u-basic {
           flex: 1;
+          padding: 0 10px;
         }
+      }
+
+
+      .u-desc{
+        padding: 0 30px;
       }
     }
   }
@@ -187,6 +238,7 @@ export default {
   .b-i-right {
     height: 100%;
     flex: 1;
+
     border: 1px solid #ccc;
 
     .b-i-l-skill {

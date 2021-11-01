@@ -134,17 +134,14 @@ export default {
 }
 
 .el-main {
-  background-color: #e9eef3;
+  padding: 10px 0;
   color: var(--el-text-color-primary);
   text-align: center;
-}
-.el-main {
   background-color: #fff;
-  padding: 10px 0;
 }
 
 .el-footer {
-  height: 30px;
+  height: 20px;
   background-color: #fff;
 }
 
