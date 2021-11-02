@@ -22,6 +22,12 @@ export default {
   },
   created() {
     this.newMenuList = this.menuList;
+
+    // 解决刷新路由匹配状态问题
+    this.newMenuList = this.newMenuList.map((item) => {
+      item.menuFlag = item.menuTo === this.$route.path;
+      return item;
+    });
   },
   methods: {
     //切换菜单并改变菜单状态

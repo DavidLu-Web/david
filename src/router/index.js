@@ -8,34 +8,37 @@ const routes = [
     component: Home,
     redirect: "/basicInfo",
 
-    children:[
+    children: [
       {
         path: "/basicInfo",
         name: "BasicInfo",
         component: () =>
-            import(/* webpackChunkName: "basicInfo" */ "../views/BasicInfo"),
-      },
-      {
-        path: "/professionalSkill",
-        name: "ProfessionalSkill",
-        component: () =>
-            import(/* webpackChunkName: "professionalSkill" */ "../views/ProfessionalSkill"),
+          import(/* webpackChunkName: "basicInfo" */ "../views/BasicInfo"),
       },
       {
         path: "/trackRecord",
         name: "TrackRecord",
         component: () =>
-            import(/* webpackChunkName: "trackRecord" */ "../views/TrackRecord"),
+          import(/* webpackChunkName: "trackRecord" */ "../views/TrackRecord"),
       },
       {
         path: "/projectExperience",
         name: "ProjectExperience",
         component: () =>
-            import(/* webpackChunkName: "projectExperience" */ "../views/ProjectExperience"),
+          import(
+            /* webpackChunkName: "projectExperience" */ "../views/ProjectExperience"
+          ),
       },
-    ]
+      {
+        path: "/randomChart",
+        name: "RandomChart",
+        component: () =>
+          import(
+            /* webpackChunkName: "professionalSkill" */ "../views/RandomChart"
+          ),
+      },
+    ],
   },
-
 ];
 
 const router = createRouter({

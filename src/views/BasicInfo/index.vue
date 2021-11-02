@@ -12,7 +12,7 @@
             shape="square"
           ></el-avatar>
           <div class="u-basic">
-            <el-descriptions title="David">
+            <el-descriptions title="卢大伟">
               <el-descriptions-item label="籍 贯">河南</el-descriptions-item>
               <el-descriptions-item label="性 别">男</el-descriptions-item>
               <el-descriptions-item label="学 历">本科</el-descriptions-item>
@@ -56,9 +56,10 @@
 </template>
 
 <script>
-import * as echarts from "echarts";
 import { MoreFilled } from "@element-plus/icons";
 import Title from "@/components/Title";
+import { chart } from "@/utils";
+import * as echarts from "echarts";
 export default {
   name: "BasicInfo",
   data() {
@@ -92,103 +93,40 @@ export default {
           color: "#0bbd87",
         },
       ],
+      chartData: [
+        { value: 30, name: "Vue" },
+        { value: 10, name: "H5/CSS3/ES6" },
+        { value: 5, name: "less/scss/stylus" },
+        { value: 5, name: "jQuery" },
+        { value: 15, name: "ElementUI/Vant" },
+        { value: 10, name: "git/yarn/npm" },
+        { value: 15, name: "Axios/Moment/Blob/Pdf" },
+        { value: 10, name: " RuoYi/vue-admin-element" },
+      ],
+      dom: "",
     };
   },
   components: {
     Title,
   },
-  created() {
-    console.log(2);
-  },
   mounted() {
-    console.log();
-    this.echartss(this.$refs.b_i_l_skill);
+    let _this = this;
+    //获取DOM
+    this.dom = this.$refs.b_i_l_skill;
+    // 初始化加载图表
+    this.drawChart();
+    //页面窗口发生变化时重新加载
+    window.onresize = function () {
+      _this.drawChart();
+    };
   },
   methods: {
-    echartss(dom) {
-      console.log(dom);
-      let myChart = echarts.init(dom);
-      let options = {
-        tooltip: {
-          trigger: "item",
-        },
-        legend: {
-          orient: "horizontal",
-          top: "top",
-          // align:'auto'
-        },
-        series: [
-          {
-            name: "专业技能",
-            type: "pie",
-            radius: "45%",
-            labelLine: {
-              length: 20
-            },
-            itemStyle: {
-              borderRadius: 10,
-              borderColor: '#fff',
-              borderWidth: 2
-            },
-            label: {
-              formatter: '{a|{b}}{abg|}\n{hr|}\n {per|{d}%}  ',
-              backgroundColor: '#F6F8FC',
-              borderColor: '#8C8D8E',
-              borderWidth: 1,
-              padding: [2, 2],
-              borderRadius: 4,
-              align: 'left',
-              rich: {
-                a: {
-                  color: '#6E7079',
-                  lineHeight: 15,
-                  fontSize: 12,
-
-                  align: 'center'
-                },
-                hr: {
-                  borderColor: '#8C8D8E',
-                  width: '100%',
-                  borderWidth: 1,
-                  height: 0
-                },
-                b: {
-                  color: '#4C5058',
-                  fontSize: 8,
-                  fontWeight: 'bold',
-                  lineHeight: 20
-                },
-                per: {
-                  color: '#4C5058',
-                  align:'center',
-                  // backgroundColor: '#4C5058',
-                  padding: [3, 4],
-                  borderRadius: 4
-                }
-              }
-            },
-            data: [
-              { value: 30, name: "Vue" },
-              { value: 10, name: "H5/CSS3/ES6" },
-              { value: 5, name: "less/scss/stylus" },
-              { value: 5, name: "jQuery" },
-              { value: 15, name: "ElementUI/Vant" },
-              { value: 10, name: "git/yarn/npm" },
-              { value: 15, name: "Axios/Moment/Blob/Pdf" },
-              { value: 10, name: " RuoYi/vue-admin-element" },
-            ],
-
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
-              },
-            },
-          },
-        ],
-      };
-      myChart.setOption(options);
+    // 加载图表
+    drawChart() {
+      let myChart = echarts.init(this.dom);
+      //报错setOption 调用时机限制，先擦除
+      myChart.clear();
+      myChart.setOption(chart(this.chartData));
     },
   },
 };
@@ -197,7 +135,7 @@ export default {
 <style lang="scss" scoped>
 .basic-info {
   height: 100%;
-  max-height: calc( 100% - 80px );
+  max-height: calc(100% - 80px);
   padding: 0 20px;
   display: flex;
 
@@ -228,8 +166,7 @@ export default {
         }
       }
 
-
-      .u-desc{
+      .u-desc {
         padding: 0 30px;
       }
     }

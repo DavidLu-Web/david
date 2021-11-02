@@ -3,6 +3,9 @@
     <el-container>
       <!--   左侧菜单   -->
       <el-aside :width="asideFlag ? '130px' : '200px'">
+        <div class="date-time">
+          <span>{{ time }}</span>
+        </div>
         <div class="aside-nav">
           <MenuBar :menuList="menuList"></MenuBar>
         </div>
@@ -13,7 +16,7 @@
         <!--  右侧头部   -->
         <el-header>
           <i
-            :class="asideFlag ? 'aa' : ''"
+            :class="asideFlag ? 'active' : ''"
             class="handle iconfont icon-tuihui"
             @click="pushAndPull"
           ></i>
@@ -35,7 +38,7 @@
 <script>
 // @ is an alias to /src
 import MenuBar from "@/components/MenuBar";
-
+import moment from "moment/moment";
 export default {
   name: "Home",
   components: {
@@ -44,6 +47,7 @@ export default {
   data() {
     return {
       asideFlag: true,
+      time: "",
       menuList: [
         {
           id: "1",
@@ -51,13 +55,6 @@ export default {
           menuFlag: true,
           menuName: "基本信息",
           icon: "icon-nan",
-        },
-        {
-          id: "2",
-          menuTo: "/professionalSkill",
-          menuFlag: false,
-          menuName: "专业技能",
-          icon: "icon-gongzuo",
         },
         {
           id: "3",
@@ -73,8 +70,20 @@ export default {
           menuName: "项目履历",
           icon: "icon-EC_gerenwengao-gerenjianli",
         },
+        {
+          id: "2",
+          menuTo: "/randomChart",
+          menuFlag: false,
+          menuName: "随机图表",
+          icon: "icon-gongzuo",
+        },
       ],
     };
+  },
+  mounted() {
+    setInterval(() => {
+      this.time = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+    }, 1000);
   },
   methods: {
     pushAndPull() {
@@ -91,6 +100,16 @@ export default {
   .el-container {
     height: 100%;
 
+    .el-aside {
+      .date-time {
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #fff;
+      }
+    }
+
     .el-header {
       position: relative;
       background-color: #fff;
@@ -105,7 +124,7 @@ export default {
         background-color: #b3c0d1;
       }
 
-      .aa {
+      .active {
         -moz-transform: scaleX(-1);
         -webkit-transform: scaleX(-1);
         -o-transform: scaleX(-1);
@@ -125,7 +144,6 @@ export default {
 }
 
 .el-aside {
-  padding: 60px 0 0 0;
   background-color: #d3dce6;
   color: var(--el-text-color-primary);
   text-align: center;
