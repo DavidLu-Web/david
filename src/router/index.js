@@ -37,6 +37,12 @@ const routes = [
             /* webpackChunkName: "professionalSkill" */ "../views/RandomChart"
           ),
       },
+      {
+        path: "/show",
+        name: "Show",
+        component: () =>
+          import(/* webpackChunkName: "professionalSkill" */ "../views/Show"),
+      },
     ],
   },
 ];

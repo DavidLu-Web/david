@@ -77,6 +77,13 @@ export default {
           menuName: "随机图表",
           icon: "icon-gongzuo",
         },
+        {
+          id: "8",
+          menuTo: "/show",
+          menuFlag: false,
+          menuName: "展示区域",
+          icon: "icon-gongzuo",
+        },
       ],
     };
   },

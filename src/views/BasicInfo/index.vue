@@ -145,7 +145,6 @@ export default {
     margin-right: 20px;
     padding: 0 10px;
     border: 1px solid #ccc;
-
     .b-i-l-user {
       width: 100%;
       height: calc(100% - 50px);
